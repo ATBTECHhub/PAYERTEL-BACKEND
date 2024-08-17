@@ -40,33 +40,48 @@ const createSendToken = (user, statusCode, res) => {
 export const signup = catchAsync(async (req, res, next) => {
   const { name, email, phone, password, passwordConfirm } = req.body;
 
-  if (await User.findOne({ email })) {
+  // Check if email already exists (case-insensitive)
+  const existingUserByEmail = await User.findOne({
+    email: { $regex: new RegExp('^' + email + '$', 'i') },
+  });
+  console.log(
+    email,
+    existingUserByEmail
+      ? 'existing user by email: ' + existingUserByEmail
+      : 'User not found',
+    await User.findById('66b525109c0024bd6c285ab6')
+  );
+  if (existingUserByEmail) {
     return next(
       new AppError(
-        'Email already exists, please login or reset your passord if you have forgotten it.',
+        'Email already exists, please login or reset your password if you have forgotten it.',
         400
       )
     );
   }
 
-  if (await User.findOne({ phone })) {
+  // Check if phone number already exists
+  const existingUserByPhone = await User.findOne({ phone });
+  if (existingUserByPhone) {
     return next(
       new AppError(
-        'Phone number already exists, please login or reset your passord if you have forgotten it.',
+        'Phone number already exists, please login or reset your password if you have forgotten it.',
         400
       )
     );
   }
 
   const otp = generateOTP();
-  const otpExpires = Date.now() + 10 * 60 * 1000; // 10 minutes from now
+  const otpExpires = Date.now() + 10 * 60 * 1000; // OTP expires in 10 minutes
 
-  await sendOTP(email, otp, name);
+  await sendOTP(email, otp, name); // Send OTP to email
 
+  // Check if session is initialized
   if (!req.session) {
     return next(new AppError('Session is not initialized', 500));
   }
 
+  // Store OTP and user data in session
   req.session.otp = otp;
   req.session.otpExpires = otpExpires;
   req.session.user = { name, email, phone, password, passwordConfirm };
@@ -118,7 +133,7 @@ export const resendOTP = catchAsync(async (req, res, next) => {
   const otp = generateOTP();
 
   // Set the new OTP and expiration time in the session
-  const otpExpires = Date.now() + 10 * 60 * 1000; // 10 minutes from now
+  const otpExpires = Date.now() + 10 * 60 * 1000;
   req.session.otp = otp;
   req.session.otpExpires = otpExpires;
 

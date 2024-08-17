@@ -30,7 +30,7 @@
     "optional-chaining/optional-chaining": "off",
     "no-unused-vars": [
       "error",
-      { "argsIgnorePattern": "err,req|res|next|val" }
+      { "argsIgnorePattern": "err|req|res|next|val" }
     ],
     "import/extensions": "off"
   }

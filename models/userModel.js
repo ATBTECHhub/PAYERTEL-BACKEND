@@ -21,6 +21,16 @@ const userSchema = new mongoose.Schema({
     required: [true, 'Please provide your phone number'],
     validate: [validator.isMobilePhone],
   },
+  wallet: {
+    balance: {
+      type: Number,
+      default: 0,
+    },
+    currency: {
+      type: String,
+      default: 'NGN',
+    },
+  },
   role: {
     type: String,
     enum: ['user', 'admin'],
@@ -113,6 +123,15 @@ userSchema.methods.createPasswordResetToken = function () {
   this.passwordResetExpires = Date.now() + 60 * 60 * 1000;
 
   return resetToken;
+};
+
+// Instance method to adjust wallet balance
+userSchema.methods.adjustWalletBalance = function (amount, type) {
+  if (type === 'credit') {
+    this.wallet.balance += amount;
+  } else if (type === 'debit') {
+    this.wallet.balance -= amount;
+  }
 };
 
 const User = mongoose.model('User', userSchema);

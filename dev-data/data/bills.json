@@ -1,0 +1,554 @@
+{
+  "airtime": {
+    "mtn": [{ "variation_id": "mtn-airtime", "plan_name": "MTN VTU" }],
+    "glo": [{ "variation_id": "glo-airtime", "plan_name": "Glo VTU" }],
+    "airtel": [{ "variation_id": "airtel-airtime", "plan_name": "Airtel VTU" }],
+    "9mobile": [
+      { "variation_id": "9mobile-airtime)", "plan_name": "9mobile VTU" }
+    ]
+  },
+  "data": {
+    "mtn": [
+      {
+        "variation_id": "500",
+        "data_plan": "MTN SME Data 500MB – 30 Days",
+        "amount": "NGN199"
+      },
+      {
+        "variation_id": "M1024",
+        "data_plan": "MTN SME Data 1GB – 30 Days",
+        "amount": "NGN339"
+      },
+      {
+        "variation_id": "M2024",
+        "data_plan": "MTN SME Data 2GB – 30 Days",
+        "amount": "NGN679"
+      },
+      {
+        "variation_id": "3000",
+        "data_plan": "MTN SME Data 3GB – 30 Days",
+        "amount": "NGN1019"
+      },
+      {
+        "variation_id": "5000",
+        "data_plan": "MTN SME Data 5GB – 30 Days",
+        "amount": "NGN1699"
+      },
+      {
+        "variation_id": "10000",
+        "data_plan": "MTN SME Data 10GB – 30 Days",
+        "amount": "NGN3399"
+      },
+      {
+        "variation_id": "mtn-20hrs-1500",
+        "data_plan": "MTN Data 6GB – 7 Days",
+        "amount": "NGN1499"
+      },
+      {
+        "variation_id": "mtn-30gb-8000",
+        "data_plan": "MTN Data 30GB – 30 Days",
+        "amount": "NGN7959"
+      },
+      {
+        "variation_id": "mtn-40gb-10000",
+        "data_plan": "MTN Data 40GB – 30 Days",
+        "amount": "NGN9899"
+      },
+      {
+        "variation_id": "mtn-75gb-15000",
+        "data_plan": "MTN Data 75GB – 30 Days",
+        "amount": "NGN14979"
+      }
+    ],
+    "glo": [
+      {
+        "variation_id": "glo100x",
+        "data_plan": "Glo Data 1GB – 5 Nights",
+        "amount": "NGN98"
+      },
+      {
+        "variation_id": "glo200x",
+        "data_plan": "Glo Data 1.25GB – 1 Day (Sunday)",
+        "amount": "NGN199"
+      },
+      {
+        "variation_id": "G500",
+        "data_plan": "Glo Data 1.35GB – 14 Days",
+        "amount": "NGN489"
+      },
+      {
+        "variation_id": "G1000",
+        "data_plan": "Glo Data 2.9GB – 30 Days",
+        "amount": "NGN979"
+      },
+      {
+        "variation_id": "G2000",
+        "data_plan": "Glo Data 5.8GB – 30 Days",
+        "amount": "NGN1949"
+      },
+      {
+        "variation_id": "G2500",
+        "data_plan": "Glo Data 7.7GB – 30 Days",
+        "amount": "NGN2449"
+      },
+      {
+        "variation_id": "G3000",
+        "data_plan": "Glo Data 10GB – 30 Days",
+        "amount": "NGN2949"
+      },
+      {
+        "variation_id": "G4000",
+        "data_plan": "Glo Data 13.25GB – 30 Days",
+        "amount": "NGN3889"
+      },
+      {
+        "variation_id": "G5000",
+        "data_plan": "Glo Data 18.25GB – 30 Days",
+        "amount": "NGN4849"
+      },
+      {
+        "variation_id": "G8000",
+        "data_plan": "Glo Data 29.5GB – 30 Days",
+        "amount": "NGN7799"
+      },
+      {
+        "variation_id": "glo10000",
+        "data_plan": "Glo Data 50GB – 30 Days",
+        "amount": "NGN9899"
+      }
+    ],
+    "airtel": [
+      {
+        "variation_id": "AIRTEL500MB",
+        "data_plan": "Airtel Data 500MB (Gift) – 30 Days",
+        "amount": "NGN199"
+      },
+      {
+        "variation_id": "AIRTEL1GB",
+        "data_plan": "Airtel Data 1GB (Gift) – 30 Days",
+        "amount": "NGN339"
+      },
+      {
+        "variation_id": "AIRTEL2GB",
+        "data_plan": "Airtel Data 2GB (Gift) – 30 Days",
+        "amount": "NGN679"
+      },
+      {
+        "variation_id": "AIRTEL5GB",
+        "data_plan": "Airtel Data 5GB (Gift) – 30 Days",
+        "amount": "NGN1699"
+      },
+      {
+        "variation_id": "AIRTEL10GB",
+        "data_plan": "Airtel Data 10GB (Gift) – 30 Days",
+        "amount": "NGN3399"
+      },
+      {
+        "variation_id": "AIRTEL15GB",
+        "data_plan": "Airtel Data 15GB (Gift) – 30 Days",
+        "amount": "NGN4999"
+      },
+      {
+        "variation_id": "AIRTEL20GB",
+        "data_plan": "Airtel Data 20GB (Gift) – 30 Days",
+        "amount": "NGN5999"
+      },
+      {
+        "variation_id": "airt-1100",
+        "data_plan": "Airtel Data 1.5GB – 30 Days",
+        "amount": "NGN1079"
+      },
+      {
+        "variation_id": "airt-1300",
+        "data_plan": "Airtel Data 2GB – 30 Days",
+        "amount": "NGN1289"
+      },
+      {
+        "variation_id": "airt-1650",
+        "data_plan": "Airtel Data 3GB – 30 Days",
+        "amount": "NGN1639"
+      },
+      {
+        "variation_id": "airt-2200",
+        "data_plan": "Airtel Data 4.5GB – 30 Days",
+        "amount": "NGN2189"
+      },
+      {
+        "variation_id": "airt-3300",
+        "data_plan": "Airtel Data 10GB – 30 Days",
+        "amount": "NGN3289"
+      },
+      {
+        "variation_id": "airt-5500",
+        "data_plan": "Airtel Data 20GB – 30 Days",
+        "amount": "NGN5489"
+      },
+      {
+        "variation_id": "airt-11000",
+        "data_plan": "Airtel Data 40GB – 30 Days",
+        "amount": "NGN10799"
+      },
+      {
+        "variation_id": "airt-330x",
+        "data_plan": "Airtel Data 1GB – 1 Day",
+        "amount": "NGN329"
+      },
+      {
+        "variation_id": "airt-550",
+        "data_plan": "Airtel Data 750MB – 14 Days",
+        "amount": "NGN545"
+      },
+      {
+        "variation_id": "airt-1650-2",
+        "data_plan": "Airtel Data 6GB – 7 Days",
+        "amount": "NGN1639"
+      }
+    ],
+    "9mobile": [
+      {
+        "variation_id": "9MOB1000",
+        "data_plan": "9mobile Data 1GB – 30 Days",
+        "amount": "NGN989"
+      },
+      {
+        "variation_id": "9MOB34500",
+        "data_plan": "9mobile Data 2.5GB – 30 Days",
+        "amount": "NGN1989"
+      },
+      {
+        "variation_id": "9MOB8000",
+        "data_plan": "9mobile Data 11.5GB – 30 Days",
+        "amount": "NGN7969"
+      },
+      {
+        "variation_id": "9MOB5000",
+        "data_plan": "9mobile Data 15GB – 30 Days",
+        "amount": "NGN9899"
+      }
+    ]
+  },
+  "cable-tv": {
+    "dstv": [
+      {
+        "variation_id": "dstv-padi",
+        "plan_name": "DStv Padi",
+        "amount": "NGN3600",
+        "service_fee": "NGN39"
+      },
+      {
+        "variation_id": "dstv-yanga",
+        "plan_name": "DStv Yanga",
+        "amount": "NGN5100",
+        "service_fee": "NGN39"
+      },
+      {
+        "variation_id": "dstv-confam",
+        "plan_name": "DStv Confam",
+        "amount": "NGN9300",
+        "service_fee": "NGN39"
+      },
+      {
+        "variation_id": "dstv6",
+        "plan_name": "DStv Asian",
+        "amount": "NGN12400",
+        "service_fee": "NGN39"
+      },
+      {
+        "variation_id": "dstv79",
+        "plan_name": "DStv Compact",
+        "amount": "NGN15700",
+        "service_fee": "NGN39"
+      },
+      {
+        "variation_id": "dstv7",
+        "plan_name": "DStv Compact Plus",
+        "amount": "NGN25000",
+        "service_fee": "NGN39"
+      },
+      {
+        "variation_id": "dstv3",
+        "plan_name": "DStv Premium",
+        "amount": "NGN37000",
+        "service_fee": "NGN39"
+      },
+      {
+        "variation_id": "dstv10",
+        "plan_name": "DStv Premium Asia",
+        "amount": "NGN42000",
+        "service_fee": "NGN39"
+      },
+      {
+        "variation_id": "dstv9",
+        "plan_name": "DStv Premium-French",
+        "amount": "NGN57500",
+        "service_fee": "NGN39"
+      },
+      {
+        "variation_id": "confam-extra",
+        "plan_name": "DStv Confam + ExtraView",
+        "amount": "NGN14300",
+        "service_fee": "NGN39"
+      },
+      {
+        "variation_id": "yanga-extra",
+        "plan_name": "DStv Yanga + ExtraView",
+        "amount": "NGN10100",
+        "service_fee": "NGN39"
+      },
+      {
+        "variation_id": "padi-extra",
+        "plan_name": "DStv Padi + ExtraView",
+        "amount": "NGN8600",
+        "service_fee": "NGN39"
+      },
+      {
+        "variation_id": "com-asia",
+        "plan_name": "DStv Compact + Asia",
+        "amount": "NGN28100",
+        "service_fee": "NGN39"
+      },
+      {
+        "variation_id": "dstv30",
+        "plan_name": "DStv Compact + Extra View",
+        "amount": "NGN20700",
+        "service_fee": "NGN39"
+      },
+      {
+        "variation_id": "com-frenchtouch",
+        "plan_name": "DStv Compact + French Touch",
+        "amount": "NGN21500",
+        "service_fee": "NGN39"
+      },
+      {
+        "variation_id": "dstv33",
+        "plan_name": "DStv Premium – Extra View",
+        "amount": "NGN42000",
+        "service_fee": "NGN39"
+      },
+      {
+        "variation_id": "dstv40",
+        "plan_name": "DStv Compact Plus – Asia",
+        "amount": "NGN37400",
+        "service_fee": "NGN39"
+      },
+      {
+        "variation_id": "com-frenchtouch-extra",
+        "plan_name": "DStv Compact + French Touch + ExtraView",
+        "amount": "NGN26500",
+        "service_fee": "NGN39"
+      },
+      {
+        "variation_id": "com-asia-extra",
+        "plan_name": "DStv Compact + Asia + ExtraView",
+        "amount": "NGN33100",
+        "service_fee": "NGN39"
+      },
+      {
+        "variation_id": "dstv43",
+        "plan_name": "DStv Compact Plus + French Plus",
+        "amount": "NGN45500",
+        "service_fee": "NGN39"
+      },
+      {
+        "variation_id": "complus-frenchtouch",
+        "plan_name": "DStv Compact Plus + French Touch",
+        "amount": "NGN30800",
+        "service_fee": "NGN39"
+      },
+      {
+        "variation_id": "dstv45",
+        "plan_name": "DStv Compact Plus – Extra View",
+        "amount": "NGN30000",
+        "service_fee": "NGN39"
+      },
+      {
+        "variation_id": "complus-french-extraview",
+        "plan_name": "DStv Compact Plus + FrenchPlus + Extra View",
+        "amount": "NGN50500",
+        "service_fee": "NGN39"
+      },
+      {
+        "variation_id": "dstv47",
+        "plan_name": "DStv Compact + French Plus",
+        "amount": "NGN36200",
+        "service_fee": "NGN39"
+      },
+      {
+        "variation_id": "dstv48",
+        "plan_name": "DStv Compact Plus + Asia + ExtraView",
+        "amount": "NGN42400",
+        "service_fee": "NGN39"
+      },
+      {
+        "variation_id": "dstv61",
+        "plan_name": "DStv Premium + Asia + Extra View",
+        "amount": "NGN54400",
+        "service_fee": "NGN39"
+      },
+      {
+        "variation_id": "dstv62",
+        "plan_name": "DStv Premium + French + Extra View",
+        "amount": "NGN51000",
+        "service_fee": "NGN39"
+      },
+      {
+        "variation_id": "hdpvr-access-service",
+        "plan_name": "DStv HDPVR Access Service",
+        "amount": "NGN5000",
+        "service_fee": "NGN39"
+      },
+      {
+        "variation_id": "frenchplus-addon",
+        "plan_name": "DStv French Plus Add-on",
+        "amount": "NGN20500",
+        "service_fee": "NGN39"
+      },
+      {
+        "variation_id": "asia-addon",
+        "plan_name": "DStv Asian Add-on",
+        "amount": "NGN12400",
+        "service_fee": "NGN39"
+      },
+      {
+        "variation_id": "frenchtouch-addon",
+        "plan_name": "DStv French Touch Add-on",
+        "amount": "NGN5800",
+        "service_fee": "NGN39"
+      },
+      {
+        "variation_id": "extraview-access",
+        "plan_name": "DStv ExtraView Access",
+        "amount": "NGN5000",
+        "service_fee": "NGN39"
+      },
+      {
+        "variation_id": "french11",
+        "plan_name": "DStv French 11",
+        "amount": "NGN9000",
+        "service_fee": "NGN39"
+      }
+    ],
+    "gotv": [
+      {
+        "variation_id": "gotv-smallie",
+        "plan_name": "GOtv Smallie",
+        "amount": "NGN1575",
+        "service_fee": "NGN39"
+      },
+      {
+        "variation_id": "gotv-jinja",
+        "plan_name": "GOtv Jinja",
+        "amount": "NGN3300",
+        "service_fee": "NGN39"
+      },
+      {
+        "variation_id": "gotv-jolli",
+        "plan_name": "GOtv Jolli",
+        "amount": "NGN4850",
+        "service_fee": "NGN39"
+      },
+      {
+        "variation_id": "gotv-max",
+        "plan_name": "GOtv Max",
+        "amount": "NGN7200",
+        "service_fee": "NGN39"
+      },
+      {
+        "variation_id": "gotv-supa",
+        "plan_name": "GOtv Supa",
+        "amount": "NGN15700",
+        "service_fee": "NGN39"
+      }
+    ],
+    "startimes": [
+      {
+        "variation_id": "nova",
+        "plan_name": "Startimes Nova",
+        "amount": "NGN1500",
+        "service_fee": "NGN39"
+      },
+      {
+        "variation_id": "basic",
+        "plan_name": "Startimes Basic",
+        "amount": "NGN3000",
+        "service_fee": "NGN39"
+      },
+      {
+        "variation_id": "smart",
+        "plan_name": "Startimes Smart",
+        "amount": "NGN3500",
+        "service_fee": "NGN39"
+      },
+      {
+        "variation_id": "classic",
+        "plan_name": "Startimes Classic",
+        "amount": "NGN3800",
+        "service_fee": "NGN39"
+      },
+      {
+        "variation_id": "super",
+        "plan_name": "Startimes Super",
+        "amount": "NGN6500",
+        "service_fee": "NGN39"
+      }
+    ]
+  },
+  "electricity": {
+    "abuja-electric": [
+      {
+        "variation_id": "prepaid|postpaid",
+        "electricity_plan": "Abuja DISCO ELECTRICITY Bill Payment",
+        "service_fee": "NGN39 + SMS"
+      }
+    ],
+    "eko-electric": [
+      {
+        "variation_id": "prepaid|postpaid",
+        "electricity_plan": "Eko DISCO ELECTRICITY Bill Payment",
+        "service_fee": "NGN39 + SMS"
+      }
+    ],
+    "ibadan-electric": [
+      {
+        "variation_id": "prepaid|postpaid",
+        "electricity_plan": "Ibadan DISCO ELECTRICITY Bill Payment",
+        "service_fee": "NGN39 + SMS"
+      }
+    ],
+    "jos-electric": [
+      {
+        "variation_id": "prepaid|postpaid",
+        "electricity_plan": "Jos DISCO ELECTRICITY Bill Payment",
+        "service_fee": "NGN39 + SMS"
+      }
+    ],
+    "ikeja-electric": [
+      {
+        "variation_id": "prepaid|postpaid",
+        "electricity_plan": "Ikeja DISCO ELECTRICITY Bill Payment",
+        "service_fee": "NGN39 + SMS"
+      }
+    ],
+    "kaduna-electric": [
+      {
+        "variation_id": "prepaid|postpaid",
+        "electricity_plan": "Kaduna DISCO ELECTRICITY Bill Payment",
+        "service_fee": "NGN39 + SMS"
+      }
+    ],
+    "kano-electric": [
+      {
+        "variation_id": "prepaid|postpaid",
+        "electricity_plan": "Kano DISCO ELECTRICITY Bill Payment",
+        "service_fee": "NGN39 + SMS"
+      }
+    ],
+    "portharcourt-electric": [
+      {
+        "variation_id": "prepaid|postpaid",
+        "electricity_plan": "Portharcourt DISCO ELECTRICITY Bill Payment",
+        "service_fee": "NGN39 + SMS"
+      }
+    ]
+  }
+}

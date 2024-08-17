@@ -1,0 +1,154 @@
+[
+  {
+    "name": "MTN",
+    "key": "mtn",
+    "isAirtime": true,
+    "isMobile_Data": false,
+    "category": "airtime",
+    "isElectricity": false
+  },
+  {
+    "name": "Glo",
+    "key": "glo",
+    "isAirtime": true,
+    "isMobile_Data": false,
+    "category": "airtime",
+    "isElectricity": false
+  },
+  {
+    "name": "Airtel",
+    "key": "airtel",
+    "isAirtime": true,
+    "isMobile_Data": false,
+    "category": "airtime",
+    "isElectricity": false
+  },
+  {
+    "name": "9mobile",
+    "key": "9mobile",
+    "isAirtime": true,
+    "isMobile_Data": false,
+    "category": "airtime",
+    "isElectricity": false
+  },
+  {
+    "name": "MTN",
+    "key": "mtn",
+    "isAirtime": false,
+    "isMobile_Data": true,
+    "category": "data",
+    "isElectricity": false
+  },
+  {
+    "name": "Glo",
+    "key": "glo",
+    "isAirtime": false,
+    "isMobile_Data": true,
+    "category": "data",
+    "isElectricity": false
+  },
+  {
+    "name": "Airtel",
+    "key": "airtel",
+    "isAirtime": false,
+    "isMobile_Data": true,
+    "category": "data",
+    "isElectricity": false
+  },
+  {
+    "name": "9mobile",
+    "key": "9mobile",
+    "isAirtime": false,
+    "isMobile_Data": true,
+    "category": "data",
+    "isElectricity": false
+  },
+  {
+    "name": "GOtv",
+    "key": "gotv",
+    "isAirtime": false,
+    "isMobile_Data": false,
+    "category": "cable-tv",
+    "isElectricity": false
+  },
+  {
+    "name": "DStv",
+    "key": "dstv",
+    "isAirtime": false,
+    "isMobile_Data": false,
+    "category": "cable-tv",
+    "isElectricity": false
+  },
+  {
+    "name": "Startimes",
+    "key": "startimes",
+    "isAirtime": false,
+    "isMobile_Data": false,
+    "category": "cable-tv",
+    "isElectricity": false
+  },
+  {
+    "name": "Abuja Electricity (AEDC)",
+    "key": "abuja-electric",
+    "isAirtime": false,
+    "isMobile_Data": false,
+    "isElectricity": true,
+    "category": "electricity"
+  },
+  {
+    "name": "Eko Electricity (EKEDC)",
+    "key": "eko-electric",
+    "isAirtime": false,
+    "isMobile_Data": false,
+    "isElectricity": true,
+    "category": "electricity"
+  },
+  {
+    "name": "Ibadan Electricity (IBEDC)",
+    "key": "ibadan-electric",
+    "isAirtime": false,
+    "isMobile_Data": false,
+    "isElectricity": true,
+    "category": "electricity"
+  },
+  {
+    "name": "Ikeja Electricity (IKEDC)",
+    "key": "ikeja-electric",
+    "isAirtime": false,
+    "isMobile_Data": false,
+    "isElectricity": true,
+    "category": "electricity"
+  },
+  {
+    "name": "Jos Electricity (JEDplc)",
+    "key": "jos-electric",
+    "isAirtime": false,
+    "isMobile_Data": false,
+    "isElectricity": true,
+    "category": "electricity"
+  },
+  {
+    "name": "Kaduna Electricity (KAEDCO)",
+    "key": "kaduna-electric",
+    "isAirtime": false,
+    "isMobile_Data": false,
+    "isElectricity": true,
+    "category": "electricity"
+  },
+  {
+    "name": "Kano Electricity (KEDCO)",
+    "key": "kano-electric",
+    "isAirtime": false,
+    "isMobile_Data": false,
+    "isElectricity": true,
+    "category": "electricity"
+  },
+  {
+    "name": "Portharcourt Electricity (PHED)",
+    "key": "portharcourt-electric",
+    "isAirtime": false,
+    "isMobile_Data": false,
+    "isElectricity": true,
+    "category": "electricity"
+  }
+]

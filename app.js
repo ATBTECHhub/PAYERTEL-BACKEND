@@ -14,6 +14,9 @@ import MongoStore from 'connect-mongo';
 
 import authRouter from './routes/authRoutes.js';
 import userRouter from './routes/userRoutes.js';
+import billRouter from './routes/billRoutes.js';
+import transactionRouter from './routes/transactionRoutes.js';
+import thirdPartyWalletRouter from './routes/thirdPartyWalletRoutes.js';
 import globalErrorHandler from './controllers/errorController.js';
 import AppError from './utils/appError.js';
 
@@ -98,6 +101,9 @@ app.use(
 // 2) ROUTES
 app.use('/api/v1/auth', authRouter);
 app.use('/api/v1/users', userRouter);
+app.use('/api/v1/bills', billRouter);
+app.use('/api/v1/transactions', transactionRouter);
+app.use('/api/v1/third-party-wallet', thirdPartyWalletRouter);
 
 // Handling all undefined routes
 app.all('*', (req, res, next) => {
