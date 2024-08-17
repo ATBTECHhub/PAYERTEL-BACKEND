@@ -129,6 +129,29 @@ export const resendOTP = catchAsync(async (req, res, next) => {
     return next(new AppError('No user found in session', 400));
   }
 
+  // Initialize resend count and timestamp if they don't exist
+  if (!req.session.otpResendCount) {
+    req.session.otpResendCount = 0;
+    req.session.otpResendStartTime = Date.now();
+  }
+
+  // Check if 24 hours have passed since the first resend attempt
+  const timeSinceFirstResend = Date.now() - req.session.otpResendStartTime;
+  if (timeSinceFirstResend > 1 * 60 * 60 * 1000) {
+    req.session.otpResendCount = 0; // Reset the counter
+    req.session.otpResendStartTime = Date.now(); // Reset the start time
+  }
+
+  // Limit resend attempts to 5
+  if (req.session.otpResendCount >= 2) {
+    return next(
+      new AppError(
+        'You have exceeded the maximum number of OTP resend attempts. Please try again after 1 hour.',
+        429
+      )
+    );
+  }
+
   // Generate a new OTP
   const otp = generateOTP();
 
@@ -136,6 +159,9 @@ export const resendOTP = catchAsync(async (req, res, next) => {
   const otpExpires = Date.now() + 10 * 60 * 1000;
   req.session.otp = otp;
   req.session.otpExpires = otpExpires;
+
+  // Increment the resend count
+  req.session.otpResendCount += 1;
 
   // Send the OTP to the user
   await sendOTP(user.email, otp, user.name);

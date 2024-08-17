@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { getThirdPartyWalletBalance } from '../controllers/thirdPartyWalletController.js';
+import { getThirdPartyWalletBalance } from '../controllers/thirdartyWalletController.js';
 
 const router = Router();
 
