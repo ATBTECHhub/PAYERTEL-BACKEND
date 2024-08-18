@@ -17,8 +17,9 @@ export const cableTvSubscription = catchAsync(async (req, res, next) => {
   }
 
   // Verify customers' data
+  let customerData;
   try {
-    const response = await axios.get(
+    customerData = await axios.get(
       'https://vtu.ng/wp-json/api/v1/verify-customer',
       {
         params: {
@@ -30,7 +31,7 @@ export const cableTvSubscription = catchAsync(async (req, res, next) => {
       }
     );
 
-    const { code, data } = response.data;
+    const { code, data } = customerData.data;
 
     // Make the API request to the cableTv provider
     if (code === 'success') {
@@ -54,9 +55,10 @@ export const cableTvSubscription = catchAsync(async (req, res, next) => {
     // and update the transaction status to 'processing'
     if (error.response.data.code === 'processing') {
       req.transactionResponse = {
-        status: error.response.data.code,
+        status: 'pending',
         orderId: error.response.data.order_id,
         errorDetails: error.response.data.message,
+        data: customerData?.data?.data,
       };
 
       // If the error is due to a network issue, update the transaction status to 'fail'
@@ -65,6 +67,7 @@ export const cableTvSubscription = catchAsync(async (req, res, next) => {
       req.transactionResponse = {
         status: 'fail',
         errorDetails: error.response.data.message,
+        data: customerData?.data?.data,
       };
     }
   }
