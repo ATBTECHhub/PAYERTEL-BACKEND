@@ -33,8 +33,18 @@ const userSchema = new mongoose.Schema({
   },
   role: {
     type: String,
-    enum: ['user', 'admin'],
-    default: 'user',
+    enum: [
+      'user',
+      'SuperAdmin',
+      'FinancialManager',
+      'SupportManager',
+      'ContentManager',
+    ],
+    default: "user",
+  },
+  isAdmin: {
+    type: Boolean,
+    default: false,
   },
   password: {
     type: String,

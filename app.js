@@ -15,6 +15,10 @@ import MongoStore from 'connect-mongo';
 import authRouter from './routes/authRoutes.js';
 import userRouter from './routes/userRoutes.js';
 import billRouter from './routes/billRoutes.js';
+import superAdminRouter from "./routes/superAdminRoutes.js";
+import financialMagerRouter from "./routes/financialManagerRoutes.js";
+import supportManagerRouter from "./routes/suportMangerRoutes.js";
+import contentManagerRouter from "./routes/contentMangerRoutes.js";
 import transactionRouter from './routes/transactionRoutes.js';
 import thirdartyWalletRouter from './routes/thirdartyWalletRoutes.js';
 import globalErrorHandler from './controllers/errorController.js';
@@ -103,7 +107,11 @@ app.use('/api/v1/auth', authRouter);
 app.use('/api/v1/users', userRouter);
 app.use('/api/v1/bills', billRouter);
 app.use('/api/v1/transactions', transactionRouter);
+app.use("api/v1/support-manager", supportManagerRouter); 
+app.use("/api/v1/financial-manager", financialMagerRouter);
+app.use("/api/v1/content-manager", contentManagerRouter);
 app.use('/api/v1/third-party-wallet', thirdartyWalletRouter);
+app.use("/api/v1/super-admin", superAdminRouter);
 
 // Handling all undefined routes
 app.all('*', (req, res, next) => {
