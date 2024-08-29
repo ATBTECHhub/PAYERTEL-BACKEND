@@ -63,4 +63,21 @@ const sendPasswordReset = async (email, resetToken, recipientName) => {
   });
 };
 
-export { sendEmail, sendOTP, sendPasswordReset };
+// New function to send waitlist confirmation email
+const sendWaitlistConfirmationEmail = async email => {
+  const html = authEmailTemplate({
+    type: 'waitlist',
+    recipientName: email, // Adjust if you have user's name
+    companyName: 'Payertel',
+    email,
+  });
+
+  await sendEmail({
+    email,
+    subject: 'You are on the Waitlist!',
+    message: `Thank you for joining the Payertel waitlist! We will notify you with updates.`,
+    html,
+  });
+};
+
+export { sendEmail, sendOTP, sendPasswordReset, sendWaitlistConfirmationEmail };

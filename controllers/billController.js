@@ -18,6 +18,7 @@ export const getAllBills = getAll(Bill);
 // Get a single bill payment by ID
 export const getBill = getOne(Bill);
 
+// Admin only
 // Create a new bill payment
 export const createBill = createOne(Bill);
 

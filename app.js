@@ -12,6 +12,7 @@ import hpp from 'hpp';
 import session from 'express-session';
 import MongoStore from 'connect-mongo';
 
+import waitListRouter from './routes/waitListRoutes.js';
 import authRouter from './routes/authRoutes.js';
 import userRouter from './routes/userRoutes.js';
 import billRouter from './routes/billRoutes.js';
@@ -56,12 +57,14 @@ app.set('view engine', 'pug');
 // 1) GLOBAL MIDDLEWARES
 
 // Enable CORS with specific options
-const corsOptions = {
-  origin: process.env.CLIENT_URL,
-  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-  credentials: true, // Allow credentials (cookies, authorization headers, etc.)
-};
-app.use(cors(corsOptions));
+// const corsOptions = {
+//   origin: process.env.CLIENT_URL,
+//   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+//   credentials: true, // Allow credentials (cookies, authorization headers, etc.)
+// };
+// app.use(cors(corsOptions));
+
+app.use(cors());
 
 // Set security HTTP headers
 app.use(helmet());
@@ -99,6 +102,7 @@ app.use(
 );
 
 // 2) ROUTES
+app.use('/api/v1/waitlist', waitListRouter);
 app.use('/api/v1/auth', authRouter);
 app.use('/api/v1/users', userRouter);
 app.use('/api/v1/bills', billRouter);
