@@ -1,304 +1,328 @@
+import bcrypt from 'bcryptjs';
 import User from '../models/userModel.js';
 import Role from '../models/roleModel.js';
 import Transaction from '../models/transactionModel.js';
 import SystemLog from '../models/systemLogModel.js';
+import catchAsync from '../utils/catchAsync.js';
+import { createSendToken } from './authController.js';
+import AppError from '../utils/appError.js';
 
 //CREATE SUPERADMIN ACCOUNT
-export const createSuperAdmin = async (req, res, next) => {
-  try {
-    const { name, email, password, role } = req.body;
-    if (!name && !email && !password && !role) {
-      return res.status(400).json({
-        message: 'Please fill all fields',
-      });
-    }
-    const existingSuperAdmin = await User.findOne({ role: 'SuperAdmin' });
-    if (!existingSuperAdmin) {
-      const superAdmin = new User({
-        name,
-        email,
-        password,
-        role
-      });
+// export const createSuperAdmin = catchAsync(async (req, res, next) => {
+//   // try {
+//   const { name, email, password, passwordConfirm, phone, role } = req.body;
+//   if (!name && !email && !password && !role) {
+//     return res.status(400).json({
+//       message: 'Please fill all fields',
+//     });
+//   }
+//   const existingSuperAdmin = await User.findOne({
+//     email: { $regex: new RegExp('^' + email + '$', 'i') },
+//   });
 
-      const salt = await bcrypt.genSalt(10);
-      superAdmin.password = await bcrypt.hash(superAdmin.password, salt);
+//   if (existingSuperAdmin) {
+//     return next(new AppError('SuperAdmin account already exists', 400));
+//   }
 
-      await superAdmin.save();
-      console.log('SuperAdmin account created successfully');
-    } else {
-      console.log('SuperAdmin account already exists');
-    }
-  } catch (error) {
-    next(error);
-  }
-};
+//   // const existingSuperAdmin = await User.findOne({ role: 'SuperAdmin' });
+//   // if (!existingSuperAdmin) {
+//   const superAdmin = await User.create({
+//     name,
+//     email,
+//     phone,
+//     password,
+//     passwordConfirm,
+//     role,
+//   });
+
+//   // const salt = await bcrypt.genSalt(10);
+//   // superAdmin.password = await bcrypt.hash(superAdmin.password, salt);
+
+//   // await superAdmin.save();
+//   console.log('SuperAdmin account created successfully');
+//   createSendToken(superAdmin, 201, res);
+//   // } else {
+//   //   console.log('SuperAdmin account already exists');
+//   // }
+//   // } catch (error) {
+//   //   next(error);
+//   // }
+// });
 
 //GET ALL USERS
-export const getAllUsers = async (req, res, next) => {
-  if (req.user.role !== 'SuperAdmin') {
-    return res.status(403).json({
-      success: false,
-      error: 'You do not have permission to perform this action.',
-    });
-  }
-  try {
-    const users = await User.find({});
-    res.status(200).json({ success: true, data: users });
-  } catch (error) {
-    next(error);
-  }
-};
+// export const getAllUsers = async (req, res, next) => {
+//   if (req.user.role !== 'SuperAdmin') {
+//     return res.status(403).json({
+//       success: false,
+//       error: 'You do not have permission to perform this action.',
+//     });
+//   }
+//   try {
+//     const users = await User.find({});
+//     res.status(200).json({ success: true, data: users });
+//   } catch (error) {
+//     next(error);
+//   }
+// };
 
 //GET USER DETAILS
-export const getUserById = async (req, res, next) => {
-  if (req.user.role !== 'SuperAdmin') {
-    return res.status(403).json({
-      success: false,
-      error: 'You do not have permission to perform this action.',
-    });
-  }
-  const { id } = req.params;
+// export const getUserById = async (req, res, next) => {
+//   if (req.user.role !== 'SuperAdmin') {
+//     return res.status(403).json({
+//       success: false,
+//       error: 'You do not have permission to perform this action.',
+//     });
+//   }
+//   const { id } = req.params;
 
-  try {
-    const user = await User.findById(id);
-    if (!user) {
-      return res.status(404).json({ success: false, error: 'User not found.' });
-    }
-    res.status(200).json({ success: true, data: user });
-  } catch (error) {
-    next(error);
-  }
-};
+//   try {
+//     const user = await User.findById(id);
+//     if (!user) {
+//       return res.status(404).json({ success: false, error: 'User not found.' });
+//     }
+//     res.status(200).json({ success: true, data: user });
+//   } catch (error) {
+//     next(error);
+//   }
+// };
 
 //CREATE AN NEW USER
-export const createUser = async (req, res, next) => {
-  if (req.user.role !== 'SuperAdmin') {
-    return res.status(403).json({
-      success: false,
-      error: 'You do not have permission to perform this action.',
-    });
-  }
+// export const createUser = async (req, res, next) => {
+//   if (req.user.role !== 'SuperAdmin') {
+//     return res.status(403).json({
+//       success: false,
+//       error: 'You do not have permission to perform this action.',
+//     });
+//   }
 
-  try {
-    const { name, email, phone, role } = req.body;
+//   try {
+//     const { name, email, phone, role } = req.body;
 
-    // Ensure all required fields are filled
-    if (!name || !email || !phone) {
-      return res.status(400).json({
-        success: false,
-        message: 'Please fill all fields',
-      });
-    }
+//     // Ensure all required fields are filled
+//     if (!name || !email || !phone) {
+//       return res.status(400).json({
+//         success: false,
+//         message: 'Please fill all fields',
+//       });
+//     }
 
-    // Check if user already exists
-    const userExist = await User.findOne({ email });
-    if (userExist) {
-      return next(errorResponse(409, 'User already exists'));
-    }
+//     // Check if user already exists
+//     const userExist = await User.findOne({ email });
+//     if (userExist) {
+//       return next(errorResponse(409, 'User already exists'));
+//     }
 
-    // Create the new user
-    const newUser = new User({
-      name,
-      email,
-      phone,
-      role: role || 'user', // Assign role based on input, default to 'user'
-    });
+//     // Create the new user
+//     const newUser = new User({
+//       name,
+//       email,
+//       phone,
+//       role: role || 'user', // Assign role based on input, default to 'user'
+//     });
 
-    await newUser.save();
+//     await newUser.save();
 
-    res.status(201).json({
-      success: true,
-      message: 'User created successfully',
-      data: newUser,
-    });
-  } catch (error) {
-    next(error); // Pass the error to the error handling middleware
-  }
-};
+//     res.status(201).json({
+//       success: true,
+//       message: 'User created successfully',
+//       data: newUser,
+//     });
+//   } catch (error) {
+//     next(error); // Pass the error to the error handling middleware
+//   }
+// };
 
 //UPDATE THE USER INFORMATION
-export const updateUser = async (req, res, next) => {
-  if (req.user.role !== 'SuperAdmin') {
-    return res.status(403).json({
-      success: false,
-      error: 'You do not have permission to perform this action.',
-    });
-  }
-  const { id } = req.params;
+// export const updateUser = async (req, res, next) => {
+//   if (req.user.role !== 'SuperAdmin') {
+//     return res.status(403).json({
+//       success: false,
+//       error: 'You do not have permission to perform this action.',
+//     });
+//   }
+//   const { id } = req.params;
 
-  try {
-    const user = await User.findByIdAndUpdate(id, req.body, {
-      new: true,
-      runValidators: true,
-    });
-    if (!user) {
-      return res.status(404).json({ success: false, error: 'User not found.' });
-    }
-    res.status(200).json({ success: true, data: user });
-  } catch (error) {
-    next(error);
-  }
-};
+//   try {
+//     const user = await User.findByIdAndUpdate(id, req.body, {
+//       new: true,
+//       runValidators: true,
+//     });
+//     if (!user) {
+//       return res.status(404).json({ success: false, error: 'User not found.' });
+//     }
+//     res.status(200).json({ success: true, data: user });
+//   } catch (error) {
+//     next(error);
+//   }
+// };
 
 //DELETE OR DEACTIVATE USER
-export const deleteUser = async (req, res, next) => {
-  if (req.user.role !== 'SuperAdmin') {
-    return res.status(403).json({
-      success: false,
-      error: 'You do not have permission to perform this action.',
-    });
-  }
-  const { id } = req.params;
+// export const deleteUser = async (req, res, next) => {
+//   if (req.user.role !== 'SuperAdmin') {
+//     return res.status(403).json({
+//       success: false,
+//       error: 'You do not have permission to perform this action.',
+//     });
+//   }
+//   const { id } = req.params;
 
-  try {
-    const user = await User.findByIdAndDelete(id);
-    if (!user) {
-      return res.status(404).json({ success: false, error: 'User not found.' });
-    }
-    res
-      .status(200)
-      .json({ success: true, message: 'User deleted successfully.' });
-  } catch (error) {
-    next(error);
-  }
-};
+//   try {
+//     const user = await User.findByIdAndDelete(id);
+//     if (!user) {
+//       return res.status(404).json({ success: false, error: 'User not found.' });
+//     }
+//     res
+//       .status(200)
+//       .json({ success: true, message: 'User deleted successfully.' });
+//   } catch (error) {
+//     next(error);
+//   }
+// };
 
 //SYSTEM MAINTENANCE/MONITORING (SuperAdmin only)
 // View system performance metrics
-export const viewSystemPerformance = (req, res) => {
-  if (req.user.role !== 'SuperAdmin') {
-    return res.status(403).json({
-      success: false,
-      error: 'You do not have permission to perform this action.',
-    });
-  }
-  try {
-    const uptime = process.uptime();
-    const performanceMetrics = {
-      uptime: `${Math.floor(uptime / 60)} minutes`,
-      responseTime: '50ms', // Replace with actual calculation
-    };
-    res.status(200).json({ success: true, data: performanceMetrics });
-  } catch (error) {
-    next(error);
-  }
-};
+export const viewSystemPerformance = catchAsync(async (req, res, next) => {
+  // if (req.user.role !== 'SuperAdmin') {
+  //   return res.status(403).json({
+  //     success: false,
+  //     error: 'You do not have permission to perform this action.',
+  //   });
+  // }
+  // try {
+  const uptime = process.uptime();
+  const performanceMetrics = {
+    uptime: `${Math.floor(uptime / 60)} minutes`,
+    responseTime: '50ms', // Replace with actual calculation
+  };
+  res.status(200).json({ success: true, data: performanceMetrics });
+  // } catch (error) {
+  //   next(error);
+  // }
+});
 
 // View error logs
 export const viewErrorLogs = (req, res) => {
-  if (req.user.role !== 'SuperAdmin') {
-    return res.status(403).json({
-      success: false,
-      error: 'You do not have permission to perform this action.',
-    });
-  }
-  try {
-    // Logic to fetch and return system error logs
-    const errorLogs = []; // Replace with actual error logs retrieval
-    res.status(200).json({ success: true, data: errorLogs });
-  } catch (error) {
-    next(error);
-  }
+  // if (req.user.role !== 'SuperAdmin') {
+  //   return res.status(403).json({
+  //     success: false,
+  //     error: 'You do not have permission to perform this action.',
+  //   });
+  // }
+  // try {
+  // Logic to fetch and return system error logs
+  const errorLogs = []; // Replace with actual error logs retrieval
+  res.status(200).json({ success: true, data: errorLogs });
+  // } catch (error) {
+  //   next(error);
+  // }
 };
 
 // Run system maintenance
-export const runSystemMaintenance = (req, res) => {
-  if (req.user.role !== 'SuperAdmin') {
-    return res.status(403).json({
-      success: false,
-      error: 'You do not have permission to perform this action.',
-    });
-  }
-  try {
-    // Perform system maintenance tasks (e.g., backups, updates)
-    res.status(200).json({
-      success: true,
-      message: 'System maintenance executed successfully.',
-    });
-  } catch (error) {
-    next(error);
-  }
-};
+export const runSystemMaintenance = catchAsync(async (req, res) => {
+  // if (req.user.role !== 'SuperAdmin') {
+  //   return res.status(403).json({
+  //     success: false,
+  //     error: 'You do not have permission to perform this action.',
+  //   });
+  // }
+  // try {
+  // Perform system maintenance tasks (e.g., backups, updates)
+  res.status(200).json({
+    success: true,
+    message: 'System maintenance executed successfully.',
+  });
+  // } catch (error) {
+  //   next(error);
+  // }
+});
 
 //ROLE MANAGEMENT
 // Create a new role
-export const createRole = async (req, res) => {
-  if (req.user.role !== 'SuperAdmin') {
-    return res.status(403).json({
-      success: false,
-      error: 'You do not have permission to perform this action.',
-    });
-  }
-  try {
-    const { name, permissions } = req.body;
-    const roleExists = await Role.findOne({ name });
+export const createRole = catchAsync(async (req, res, next) => {
+  // if (req.user.role !== 'SuperAdmin') {
+  //   return res.status(403).json({
+  //     success: false,
+  //     error: 'You do not have permission to perform this action.',
+  //   });
+  // }
+  // try {
+  const { name, permissions } = req.body;
+  const roleExists = await Role.findOne({ name });
 
-    if (roleExists) {
-      return res
-        .status(400)
-        .json({ success: false, error: 'Role already exists.' });
-    }
-
-    const role = new Role({ name, permissions });
-    await role.save();
-    res.status(201).json({ success: true, data: role });
-  } catch (error) {
-    next(error);
+  if (roleExists) {
+    return next(new AppError('Role already exists.', 400));
+    // return res
+    //   .status(400)
+    //   .json({ success: false, error: 'Role already exists.' });
   }
-};
+
+  // const role = new Role({ name, permissions });
+  // await role.save();
+  const newRole = await Role.create({ name, permissions });
+
+  res.status(201).json({
+    status: 'success',
+    message: 'New role has successfully been added',
+    data: newRole,
+  });
+  // } catch (error) {
+  //   next(error);
+  // }
+});
 
 // Update role permissions
 export const updateRolePermissions = async (req, res) => {
-  if (req.user.role !== 'SuperAdmin') {
-    return res.status(403).json({
-      success: false,
-      error: 'You do not have permission to perform this action.',
-    });
+  // if (req.user.role !== 'SuperAdmin') {
+  //   return res.status(403).json({
+  //     success: false,
+  //     error: 'You do not have permission to perform this action.',
+  //   });
+  // }
+  // try {
+  const { id } = req.params;
+  const { permissions } = req.body;
+
+  const role = await Role.findByIdAndUpdate(
+    id,
+    { permissions },
+    { new: true, runValidators: true }
+  );
+
+  if (!role) {
+    // return res.status(404).json({ success: false, error: 'Role not found.' });
+    return next(new AppError('Role not found.', 400));
   }
-  try {
-    const { id } = req.params;
-    const { permissions } = req.body;
 
-    const role = await Role.findByIdAndUpdate(
-      id,
-      { permissions },
-      { new: true, runValidators: true }
-    );
-
-    if (!role) {
-      return res.status(404).json({ success: false, error: 'Role not found.' });
-    }
-
-    res.status(200).json({ success: true, data: role });
-  } catch (error) {
-    next(error);
-  }
+  res.status(200).json({ success: true, data: role });
+  // } catch (error) {
+  //   next(error);
+  // }
 };
 
 // Delete a role
 export const deleteRole = async (req, res) => {
-  if (req.user.role !== 'SuperAdmin') {
-    return res.status(403).json({
-      success: false,
-      error: 'You do not have permission to perform this action.',
-    });
+  // if (req.user.role !== 'SuperAdmin') {
+  //   return res.status(403).json({
+  //     success: false,
+  //     error: 'You do not have permission to perform this action.',
+  //   });
+  // }
+  // try {
+  const { id } = req.params;
+
+  const role = await Role.findByIdAndDelete(id);
+
+  if (!role) {
+    // return res.status(404).json({ success: false, error: 'Role not found.' });
+    return next(new AppError('Role not found.', 400));
   }
-  try {
-    const { id } = req.params;
 
-    const role = await Role.findByIdAndDelete(id);
-
-    if (!role) {
-      return res.status(404).json({ success: false, error: 'Role not found.' });
-    }
-
-    res
-      .status(200)
-      .json({ success: true, message: 'Role deleted successfully.' });
-  } catch (error) {
-    next(error);
-  }
+  res
+    .status(200)
+    .json({ success: true, message: 'Role deleted successfully.' });
+  // } catch (error) {
+  //   next(error);
+  // }
 };
 
 //SECURITY MAMNAGEMENT

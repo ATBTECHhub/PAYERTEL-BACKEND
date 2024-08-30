@@ -31,7 +31,7 @@ router.get('/wallet', getUserWallet);
 router.post('/wallet/fund', verifyPayment, creditUserWallet);
 
 // Admin routes
-router.use(restrictTo('superAdmin'));
+router.use(restrictTo('SuperAdmin'));
 
 router.route('/').get(getAllUsers).post(createUser);
 router.route('/:id').get(getUser).patch(updateUser).delete(deleteUser);

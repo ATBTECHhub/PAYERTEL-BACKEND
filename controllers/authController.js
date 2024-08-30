@@ -15,7 +15,7 @@ const signToken = id =>
     expiresIn: process.env.JWT_EXPIRES_IN,
   });
 
-const createSendToken = (user, statusCode, res) => {
+export const createSendToken = (user, statusCode, res) => {
   const token = signToken(user._id);
   const cookieOptions = {
     expires: new Date(
@@ -44,13 +44,7 @@ export const signup = catchAsync(async (req, res, next) => {
   const existingUserByEmail = await User.findOne({
     email: { $regex: new RegExp('^' + email + '$', 'i') },
   });
-  console.log(
-    email,
-    existingUserByEmail
-      ? 'existing user by email: ' + existingUserByEmail
-      : 'User not found',
-    await User.findById('66b525109c0024bd6c285ab6')
-  );
+
   if (existingUserByEmail) {
     return next(
       new AppError(
